@@ -1,0 +1,39 @@
+#
+# 스프링부트 애플리케이션 공통 환경 설정
+#
+
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - common
+  application:
+    name: goffle-v.1.0
+  main:
+    # 서버 런타임되면 콘솔창에 출려되는 배너를 끈다.
+    banner-mode: OFF
+  # 웹 브라우저의 새로고침을 통한 변경된 화면의 적용을 위한 `타임리프`와 `정적 리소스`의 경로와 캐시값을 설정한다.
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    enabled: true
+    cache: false  # 개발이 완료되면 `true`로 변경
+  web:
+    resources:
+      static-locations:
+        - file:src/main/resources/static/
+      cache:
+        period: 36000
+
+# 서버 설정 : 포트 번호 변경과 HTTP 요청 및 응답의 인코딩 설정
+server:
+  port: 80
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+

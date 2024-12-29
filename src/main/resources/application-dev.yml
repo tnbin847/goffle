@@ -1,0 +1,43 @@
+#
+# 스프링부트 애플리케이션의 로컬 개발 환경 설정
+#
+
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  # 데이터베이스의 연결 정보 설정
+  datasource:
+    url: jdbc:mariadb://localhost:3306/goffle?charset=UTF-8&serverTimezone=Asia/Seoul
+    username: suihin
+    password: tq5033
+    driver-class-name: org.mariadb.jdbc.Driver
+
+# 마이바티스 설정
+mybatis:
+  # 서버 구동시 마이바티스의 동작 제어를 위한 설정 = mybatis-config.xml의 <setting></setting>
+  configuration:
+    # 매퍼의 네임스페이스 단위로 동작되는 캐시를 비활성화
+    cache-enabled: false
+    # 지연 로딩 비활성화
+    lazy-loading-enabled: false
+    # SQL 세션 객체마다 가지고 있는 로컬 캐시의 적용 범위를 설정
+    local-cache-scope: STATEMENT
+    # 스네이크 표기법의 컬럼명 → 카멜 케이스 표기법으로 변경
+    map-underscore-to-camel-case: true
+    # 조회된 값이 NULL일 경우, 누락될 수 있는 문제를 방지하기 위해 setter()와 put()를 호출
+    call-setters-on-nulls: true
+    # 마이바티스에서 NULL값인 파라미터 처리
+    jdbc-type-for-null: NULL
+  # 사용자 정의 타입 핸들러의 패키지 경로를 지정
+  type-handlers-package: com.tnbin.goffle.global.common.mybatis
+  mapper-locations:
+    - classpath:mapper/*_mapper.xml
+
+# 로깅 레벨 설정
+logging:
+  level:
+    web: debug
+    root: info
