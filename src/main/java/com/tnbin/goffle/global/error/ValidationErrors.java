@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * 클라이언트의 요청에 의해 발생된 유효성 검증 에러를 처리 및 그 정보를 리스트로 반환하는 역할을 수행하는 클래스
+ * 클라이언트의 요청에 의해 발생된 유효성 검증 에러를 처리 후 그 정보를 반환하는 역할을 수행하는 클래스
  */
 
 @Getter
@@ -34,14 +35,14 @@ public class ValidationErrors {
     /**
      * 특정 필드에 의해 발생된 에러에 대한 정보를 반환한다.
      *
-     * @param field     에러가 발생된 필드명
-     * @param value     필드에 담긴 사용자의 입력값
+     * @param field     에러가 발생한 필드명
+     * @param value     필드에 담긴 사용자 입력값
      * @param message   에러가 발생된 원인
      * @return          에러 정보 리스트
      */
     public static List<ValidationErrors> of(final String field, final String value, final String message) {
         final List<ValidationErrors> errors = new ArrayList<>();
-        errors.add(ValidationErrors.builder().field(field).message(message).value(value).build());
+        errors.add(ValidationErrors.builder().field(field).value(value).message(message).build());
         return errors;
     }
 
@@ -55,7 +56,7 @@ public class ValidationErrors {
         final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         return fieldErrors.stream().map(fieldError -> ValidationErrors.builder()
                 .field(fieldError.getField())
-                .value(rejectedToString(fieldError.getRejectedValue()))
+                .value(nullSafeToString(fieldError.getRejectedValue()))
                 .message(fieldError.getDefaultMessage())
                 .build()).collect(Collectors.toList());
     }
@@ -69,19 +70,33 @@ public class ValidationErrors {
     public static List<ValidationErrors> of(final Set<ConstraintViolation<?>> violations) {
         final List<ConstraintViolation<?>> constraintViolations = new ArrayList<>(violations);
         return constraintViolations.stream().map(constraintViolation -> ValidationErrors.builder()
-                .field(parsingPropertyName(constraintViolation.getPropertyPath().toString()))
-                .value(rejectedToString(constraintViolation.getInvalidValue()))
+                .field(parsingPropertyFrom(constraintViolation.getPropertyPath().toString()))
+                .value(nullSafeToString(constraintViolation.getInvalidValue()))
                 .message(constraintViolation.getMessageTemplate())
-                .build()
-        ).collect(Collectors.toList());
+                .build()).collect(Collectors.toList());
     }
 
-    private static String rejectedToString(Object rejected) {
-        return rejected == null ? "" : rejected.toString();
+    /**
+     * 전달된 값의 타입의 불일치로 인해 발생된 에러에 대한 정보를 반환한다.
+     *
+     * @param e 타입 불일치로 인해 발생된 예외
+     * @return  에러 정보 리스트
+     */
+    public static List<ValidationErrors> of(final MethodArgumentTypeMismatchException e) {
+        final List<ValidationErrors> errors = new ArrayList<>();
+        final String field = e.getName();
+        final String value = nullSafeToString(e.getValue());
+        final String message = field + " 값의 타입은 " + e.getRequiredType().getName() + " 이어야 합니다.";
+        errors.add(ValidationErrors.builder().field(field).value(value).message(message).build());
+        return errors;
     }
 
-    private static String parsingPropertyName(String propertyPath) {
-        final int lastIndex = propertyPath.lastIndexOf('.');
+    private static String nullSafeToString(Object invalidValue) {
+        return invalidValue == null ? "" : invalidValue.toString();
+    }
+
+    private static String parsingPropertyFrom(String propertyPath) {
+        int lastIndex = propertyPath.lastIndexOf('.');
         return lastIndex == -1 ? propertyPath : propertyPath.substring(lastIndex);
     }
 }

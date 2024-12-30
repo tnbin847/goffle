@@ -33,6 +33,8 @@ mybatis:
     jdbc-type-for-null: NULL
   # 사용자 정의 타입 핸들러의 패키지 경로를 지정
   type-handlers-package: com.tnbin.goffle.global.common.mybatis
+  # 클래스 타입의 매핑을 위한 클래스명 작성시 패키지 생략을 위한 설정
+  type-aliases-package: com.tnbin.goffle.domain.**.dto
   mapper-locations:
     - classpath:mapper/*_mapper.xml
 

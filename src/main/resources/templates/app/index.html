@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head th:replace="common/layout/fragments/head :: head"></head>
+<body>
+    <div id="page_container" class="col">
+        <div id="container" class="col is-midst">
+            <div id="container_heading" class="text-logo-lg is-text-centered">goffle</div>
+            <main class="contents">
+                <div class="content-heading">
+                    <h1 class="content-heading-title">로그인</h1>
+                </div>
+                <form role="form" id="loginForm" class="content-form">
+                    <div class="field is-grouped">
+                        <div class="field">
+                            <label for="loginId" class="box label">로그인</label>
+                            <input type="text" name="loginId" id="loginId" class="box-padding-rounded input" autofocus>
+                        </div>
+                        <div class="field">
+                            <label for="loginPwd" class="box label">비밀번호</label>
+                            <input type="password" name="password" id="loginPwd" class="box-padding-rounded input" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="field">
+                            <button type="button" id="loginBtn" class="box-padding-rounded btn is-primary">로그인</button>
+                        </div>
+                        <div class="field link is-grouped is-text-centered">
+                            <a href="#" role="link" class="is-text-secondary">아이디 찾기|</a>
+                            <a href="#" role="link" class="is-text-secondary">비밀번호 찾기|</a>
+                            <a href="/sign-up" role="link" class="is-text-secondary">회원가입</a>
+                        </div>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+    <th:block th:replace="common/layout/fragments/script :: script"/>
+</body>
+</html>

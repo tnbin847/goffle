@@ -15,7 +15,7 @@ public class CommonResponse {
     /**
      * 요청에 대한 응답 일자
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private final LocalDateTime responseAt = LocalDateTime.now();
 
     /**
