@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Arrays;
 
 /**
- *
+ * 상태여부 컬럼의 값들을 처리하기 위해 서로 다른 타입의 값들을 상응되는 의미별로 정의한 {@link Enum}클래스
  */
 
 @RequiredArgsConstructor
