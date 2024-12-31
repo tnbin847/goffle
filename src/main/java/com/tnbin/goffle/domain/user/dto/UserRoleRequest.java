@@ -20,7 +20,7 @@ public class UserRoleRequest {
 
     private String deleteYn;
 
-    @Builder(builderClassName = "UserRoleRegisterBuilder", builderMethodName = "userRoleRegisterBuilder")
+    @Builder(builderClassName = "RegisterBuilder", builderMethodName = "registerBuilder")
     public UserRoleRequest(Long userId, Role role) {
         this.userId = userId;
         this.role = role;

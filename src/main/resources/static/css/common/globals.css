@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+/**
+ * 레이아웃과 더불어 여러 컴포넌트 등에서 전반적으로 사용될 스타일 정의
+ */
+
+
+/*===========================================================================================
+    # 01. 박스
+===========================================================================================*/
+.box {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.box-padding-rounded {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    padding: var(--spacing-xs);
+    border-radius: var(--rounded-corner);
+}
+
+
+/*===========================================================================================
+    # 02. 플렉스
+===========================================================================================*/
+/* # 02-1. 수직 정렬
+ *------------------------------------------------------------------------------------------*/
+.column {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.column.is-top {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.column.is-center {
+    align-items: center;
+}
+
+.column.is-bottom {
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* # 02-2. 수평 정렬
+ *------------------------------------------------------------------------------------------*/
+.row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.row.is-right {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.row.is-center {
+    justify-content: center;
+}
+
+.row.is-left {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.row.is-space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row.is-space-around {
+    justify-content: spacen-around;
+    align-items: center;
+}
+
+/* # 02-3. 정중앙 정렬
+ *------------------------------------------------------------------------------------------*/
+.column.is-midst, .row.is-midst {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*===========================================================================================
+    # 03. 기타
+===========================================================================================*/
+.has-shadow {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}

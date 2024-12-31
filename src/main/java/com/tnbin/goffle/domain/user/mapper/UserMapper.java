@@ -9,22 +9,22 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 
     /**
-     * 전달받은 아이디가 이미 존재한다면 {@code true}, 아니면 {@code false}를 반환한다.
+     * 요청된 아이디의 존재여부를 확인한다.
      */
-    boolean existsByLoginId(String loginId);
+    void existsByLoginId(String loginId);
 
     /**
-     * 전달받은 이메일가 이미 존재한다면 {@code true}, 아니면 {@code false}를 반환한다.
+     * 요청된 이메일의 존재여부를 확인한다.
      */
-    boolean existsByEmail(String email);
+    void existsByEmail(String email);
 
     /**
-     * 가입 정보를 저장한다.
+     * 회원가입 정보를 저장한다.
      */
-    int insertUser(SignUpRequest signUpDto);
+    int insertUser(SignUpRequest signUpReqDto);
 
     /**
-     * 가입된 사용자의 권한을 저장한다.
+     * 가입된 회원의 권한을 저장한다.
      */
-    void insertUserRole(UserRoleRequest userRoleRegDto);
+    void insertUserRole(UserRoleRequest userRoleReqDto);
 }

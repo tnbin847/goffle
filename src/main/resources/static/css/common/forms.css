@@ -1,149 +1,112 @@
 @charset "utf-8";
 
 /**
- * explain about this file...
+ * 폼과 폼 내부 요소 및 레이아웃에 대한 스타일
  */
 
 
+/*===========================================================================================
+    # 01. 폼 공통
+===========================================================================================*/
+form[role='form'] {
+    line-height: 1;
+}
+
 
 /*===========================================================================================
-    # numbering. enter the title about section...
+    # 02. 폼 요소 레이아웃
 ===========================================================================================*/
-
-/* # numbering. enter the title about sub-section 
+/* # 02-1. 폼 필드 레이아웃
  *------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.field {
+    margin-bottom: var(--spacing-lg);
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+/* # 02-2. 폼 필드 그룹 레이아웃
+ *------------------------------------------------------------------------------------------*/
+.field.is-grouped {
+    margin: var(--spacing-xl) 0;
+}
+
+.field.is-grouped:first-child {
+    margin-top: 0;
+}
+
+.field.is-grouped:last-child {
+    margin-bottom: 0;
+}
+
+/* # 02-3. 폼 필드 내의 요소 그룹화 레이아웃
+ *------------------------------------------------------------------------------------------*/
+.has-addons {
+    width: 100%
+}
+
+.has-addons > * {
+    display: inline-block;
+}
+
+
+/*===========================================================================================
+    # 03. 폼 내부 요소
+===========================================================================================*/
+/* # 03-1. 폼 라벨
+ *------------------------------------------------------------------------------------------*/
+.label {
+    margin-bottom: var(--spacing-xxs);
+    color: var(--color-secondary);
+    font-size(--text-default-size);
+    font-family: var(--font-secondary);
+}
+
+/* # 03-2. 폼 내부 텍스트
+ *------------------------------------------------------------------------------------------*/
+ .required {
+    color:var(--color-danger);
+    font-size(--icon-default-size);
+ }
+
+.field > .help {
+    margin-bottom: var(--spacing-xxs);
+    color: var(--color-light);
+    font-size: var(--text-sm);
+}
+
+/* # 03-3. 입력 필드
+ *------------------------------------------------------------------------------------------*/
+.input {
+    width: 100%;
+    height: var(--form-element-height);
+    line-height: 1;
+    border: 1px solid var(--color-border);
+    background-color: var(--white);
+    color: var(--color-text);
+    font-size: var(--text-default-size);
+    font-family: var(--font-primary), sans-serif;
+}
+
+.input:focus {
+    border: 1px solid var(--color-primary);
+}
+
+
+/*===========================================================================================
+    # 04. 폼 유효성 UI
+===========================================================================================*/
+.is-error {
+    border-color: var(--color-danger);
+}
+
+.is-success {
+    border-color: var(--color-success);
+}
+
+.field > small.is-text-danger, .field > small.is-text-success {
+    display: block;
+    margin-top: var(--spacing-xxs);
+    font-size: var(--text-sm);
+}
