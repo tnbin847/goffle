@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tnbin.goffle.domain.user.mapper.UserMapper">
+    <!-- 이메일의 존재여부를 확인한다. -->
+    <select id="existsByEmail" parameterType="String" resultType="Boolean">
+        <![CDATA[
+            SELECT EXISTS (
+                SELECT 1
+                FROM USERS
+                WHERE email = #{email} LIMIT 1
+            )
+        ]]>
+    </select>
+    <!-- 회원가입 정보를 저장한다. -->
+    <insert id="insertUser" parameterType="SignUpRequest" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
+        INSERT INTO USERS (
+            email, password, name, login_type, enabled_at, use_yn, delete_yn
+        ) VALUES (
+            #{email}, #{password}, #{name}, #{loginType}, #{enabeldAt}, #{useYn}, #{deleteYn}
+        )
+    </insert>
+
+    <!-- 사용자의 새로운 권한을 저장한다. -->
+    <insert id="insertUserRole" parameterType="UserRoleRequest">
+        INSERT INTO USER_ROLES (
+            user_id, role, use_yn, updated_datetime
+        ) VALUES (
+            #{userId}, #{role}, #{useYn}, #{updatedDatetime}
+        )
+    </insert>
+</mapper>

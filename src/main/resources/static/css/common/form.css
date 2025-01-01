@@ -31,12 +31,9 @@
 +   # 폼 내부 요소
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* # 폼 라벨 ||======================================================== */
-.label {
-    display: inline-block;
-    margin-bottom: var(--spacing-xxs);
-    color: var(--color-secondary);
-}
+.label { display: inline-block; margin-bottom: var(--spacing-xxs); color: var(--color-secondary); }
 
+/* # 필수 입력 항목 아이콘 ||============================================== */
 .is-required { color: var(--color-danger); font-size: var(--icon-default-size); }
 
 /* # 입력필드 ||======================================================== */

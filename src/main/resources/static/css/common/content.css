@@ -10,7 +10,8 @@
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +   # 타이포그래피
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-* { color: var(--color-text);
+* {
+    color: var(--color-text);
     font-family: var(--font-primary), sans-serif;
     font-weight: 600;
     font-size: var(--text-default-size);
@@ -30,6 +31,7 @@
 .is-text-danger { color: var(--color-danger); }
 .is-text-link { color: var(--color-accent); }
 .is-text-disabled { color: var(--gray-7); }
+.is-text-help { color: var(--color-light); }
 
 /* # 링크 ||============================================================ */
 .has-link { color: var(--gray-7); }
@@ -37,3 +39,5 @@
 .has-link.is-grouped > [role='link'] { margin: 0 var(--spacing-sm); }
 .has-link.is-grouped > [role='link']:first-child { margin-left: 0; }
 .has-link.is-grouped > [role='link']:last-child { margin-right: 0; }
+
+/* # 헤딩 ||============================================================ */
