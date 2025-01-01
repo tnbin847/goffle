@@ -1,6 +1,0 @@
-spring:
-  profiles:
-    active:
-      - dev
-    group:
-      dev: common, dev
