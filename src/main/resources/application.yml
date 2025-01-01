@@ -1,0 +1,10 @@
+#
+# 스프링부트 애플리케이션 프로파일 그룹화
+#
+
+spring:
+  profiles:
+    active: dev
+    group:
+      dev: common, dev
+      test: common, test

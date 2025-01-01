@@ -1,0 +1,15 @@
+#
+# 스프링부트 애플리케이션 로컬 개발 환경 설정
+#
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  # 로컬 데이터베이스 연결 정보 설정
+  datasource:
+    url: jdbc:mariadb://localhost:3306/goffle_db?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: suihin
+    password: tq3718
+    driver-class-name: org.mariadb.jdbc.Driver

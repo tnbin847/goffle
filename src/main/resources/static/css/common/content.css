@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+/**
+ * 타이포그래피, 테이블, 이미지 등 페이지 내 컨텐츠를 구성하는 속성 스타일링
+ * 
+ * @author     박 수 빈
+ * @version    1.0
+ */ 
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++   # 타이포그래피
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+* { color: var(--color-text);
+    font-family: var(--font-primary), sans-serif;
+    font-weight: 600;
+    font-size: var(--text-default-size);
+    --webkit-font-smoothing: antialiased;
+    --moz-osx-font-smoothing: grayscale;
+}
+
+/* # 텍스트 정렬 ||======================================================== */
+.is-text-left { text-align: left; }
+.is-text-center { text-align: center; }
+.is-text-right { text-align: right; }
+
+/* # 텍스트 색상 ||======================================================== */
+.is-text-primary { color: var(--color-primary); }
+.is-text-secondary { color: var(--color-secondary); }
+.is-text-success { color: var(--color-success); }
+.is-text-danger { color: var(--color-danger); }
+.is-text-link { color: var(--color-accent); }
+.is-text-disabled { color: var(--gray-7); }
+
+/* # 링크 ||============================================================ */
+.has-link { color: var(--gray-7); }
+/* 링크 그룹화 */
+.has-link.is-grouped > [role='link'] { margin: 0 var(--spacing-sm); }
+.has-link.is-grouped > [role='link']:first-child { margin-left: 0; }
+.has-link.is-grouped > [role='link']:last-child { margin-right: 0; }

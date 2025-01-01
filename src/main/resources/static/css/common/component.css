@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/**
+ * 공통적으로 사용될 주요 컴포넌트 스타일링
+ * 
+ * @author     박 수 빈
+ * @version    1.0
+ */ 
+            
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++   # 버튼
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.button {
+    width: 100%;
+    height: var(--form-element-height);
+    line-height: 1;
+    padding: var(--spacing-xs);
+    border-radius: var(--rounded-corner);
+    font-family: var(--font-secondary), sans-serif;
+}
+
+/* # 색상별 버튼 스타일링 ||======================================================== */
+.button.is-primary {border: 1px solid var(--color-primary); background-color: var(--color-primary); color: var(--white); }
+.button.is-secondary { border: 1px solid var(--color-secondary); background-color: var(--color-secondary); color: var(--white); }
+.button.is-default { border: 1px solid var(--gray-6); background-color: var(--gray-6); color: var(--gray-10); }

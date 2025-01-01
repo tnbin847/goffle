@@ -1,0 +1,68 @@
+#
+# 스프링부트 애플리케이션 공통 환경 설정
+#
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - common
+  application:
+    name: goffle-v.1.0
+  main:
+    # 런타임시 콘솔에 출력되는 배너 끄기
+    banner-mode: OFF
+  # 웹 브라우저의 새로고침을 통한 화면단의 변경 이력의 반영을 위해 타임리프와 정적 리소스 파일의 경로 및 캐시값 설정
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false  # 개발 완료 후 `true`로 변경
+  web:
+    resources:
+      static-locations:
+        - file:src/main/resources/static/
+      cache:
+        period: 36000
+
+# 마이바티스 설정
+mybatis:
+  # 런타임시 마이바티스의 동작 제어값을 설정
+  configuration:
+    # 지연 로딩 설정 : 불필요한 정보의 로드를 사전에 방지
+    lazy-loading-enabled: true
+    # 매퍼의 네임스페이스 단위로 동작되는 second-level-cache 비활성화
+    cache-enabled: false
+    # 로컬 캐시 적용범위 `SESSION` → `STATEMENT` 변경
+    local-cache-scope: STATEMENT
+    # 스네이크 케이스로 표기된 컬럼명을 카멜 케이스 방식의 필드명으로 매핑처리 허용
+    map-underscore-to-camel-case: true
+    # 컬럼의 값이 `NULL`일 경우, 컬럼의 누락 방지를 위한 `put()` 또는 `setter()` 호출 허용
+    call-setters-on-nulls: true
+    # 파라미터로 전달된 NULL값에 대하여 DBMS의 어떤 타입으로 변환할지 설정 → `NULL`로 처리
+    jdbc-type-for-null: NULL
+  # 타입 정보 사용을 위해 기입해야할 패키지 전체 경로 생략을 위한 설정
+  type-aliases-package: com.tnbin.goffle.domain.**.dto
+  # 커스터마이징한 타입 핸들러 클래스가 위치한 패키지 경로 지정
+  type-handlers-package: com.tnbin.goffle.global.common.mybatis
+  # 매퍼 XML파일의 경로 지정
+  mapper-locations:
+    - classpath:mappers/*_mapper.xml
+
+# 로깅 레벨 설정
+logging:
+  level:
+    web: debug
+    root: info
+
+# 서버 설정
+server:
+  port: 80  # 내장 톰캣 서버의 포트번호 변경
+  servlet:
+    application-display-name: going-project
+    # HTTP 요청 및 응답의 인코딩 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
